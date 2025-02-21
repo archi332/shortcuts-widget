@@ -11,9 +11,8 @@
     }
   ],
   "rewrites": [
-    { "source": "/app/dist/(.*)", "destination": "/app/dist/$1" },
-    { "source": "/widget/dist/(.*)", "destination": "/widget/dist/$1" },
     { "source": "/assets/(.*)", "destination": "/app/dist/assets/$1" },
+    { "source": "/config.json", "destination": "/app/dist/config.json" },
 
     { "source": "/(.*)", "destination": "/app/dist/index.html" }
   ],
