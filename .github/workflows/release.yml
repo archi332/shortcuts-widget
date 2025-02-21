@@ -22,7 +22,7 @@ jobs:
         run: pnpm run build:widget && pnpm run build:app
 
       - name: Archive build
-        run: tar -czf dist.tar.gz app/dist widget/dist
+        run: tar -czf dist.tar.gz app/dist widget/dist vercel.json
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
