@@ -1,4 +1,4 @@
-import React, { ComponentProps, useEffect, useMemo } from "react";
+import React, { ComponentProps, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Providers from "@/components/Providers";
 import { isAddress } from "viem";
@@ -12,7 +12,19 @@ import "./App.css";
 
 const EnsoApiKey = import.meta.env.VITE_ENSO_API_KEY;
 
+const loadConfig = async () => {
+  try {
+    const response = await fetch("./config.json");
+    if (!response.ok) throw new Error("Failed to load config.json");
+    return await response.json();
+  } catch (error) {
+    console.error("Error loading config.json:", error);
+    return {};
+  }
+};
+
 function App() {
+  const [config, setConfig] = useState<Record<string, string>>({});
   const location = useLocation();
   const props = useMemo(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -34,16 +46,16 @@ function App() {
   }, [location]);
 
   useEffect(() => {
+    loadConfig().then(setConfig);
     // Set the title of the page from the environment variable
-    if (import.meta.env.VITE_APP_TITLE) {
-      document.title = `ENSO | ${import.meta.env.VITE_APP_TITLE}`;
+    if (config?.VITE_APP_TITLE) {
+      document.title = `ENSO | ${config.VITE_APP_TITLE}`;
     }
-
     // Set the favicon of the page from the environment variable
-    if (import.meta.env.VITE_APP_LOGO_URL) {
+    if (config?.VITE_APP_LOGO_URL) {
       const favicon = document.querySelector("link[rel='icon']");
       if (favicon instanceof HTMLLinkElement) {
-        favicon.href = import.meta.env.VITE_APP_LOGO_URL;
+        favicon.href = config.VITE_APP_LOGO_URL;
       }
     }
   }, []);

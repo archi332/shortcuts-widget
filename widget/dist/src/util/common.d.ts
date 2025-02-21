@@ -1,5 +1,5 @@
 import { Address } from 'viem';
-import { SupportedChainId } from '../../../../../../../src/constants';
+import { SupportedChainId } from '../../../../../../../../src/constants';
 export type Token = {
     address: Address;
     name: string;
