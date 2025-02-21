@@ -19,7 +19,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build React app
-        run: pnpm build
+        run: pnpm run build:widget && pnpm run build:app
 
       - name: Archive build
         run: tar -czf dist.tar.gz app/dist widget/dist
