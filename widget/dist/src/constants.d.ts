@@ -1,5 +1,5 @@
 import { Address } from 'viem';
-import { Token } from '../../../../../../src/util/common';
+import { Token } from '../../../../../../../src/util/common';
 export declare const ETH_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 export declare const ETH_TOKEN: Token;
 export declare const BNB_TOKEN: Token;
