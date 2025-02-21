@@ -1,4 +1,4 @@
-import { NotifyType } from '../../../../../../src/types';
+import { NotifyType } from '../../../../../../../src/types';
 type Notification = {
     message: string;
     variant: NotifyType;
