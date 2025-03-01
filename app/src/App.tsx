@@ -14,7 +14,7 @@ const EnsoApiKey = import.meta.env.VITE_ENSO_API_KEY;
 
 const loadConfig = async () => {
   try {
-    const response = await fetch("./config.json");
+    const response = await fetch("/config.json");
     if (!response.ok) throw new Error("Failed to load config.json");
     return await response.json();
   } catch (error) {
@@ -47,6 +47,13 @@ function App() {
 
   useEffect(() => {
     loadConfig().then(setConfig);
+  }, []);
+
+  useEffect(() => {
+    if (!config || Object.keys(config).length === 0) return;
+
+    console.log("Updating title and favicon with config:", config);
+
     // Set the title of the page from the environment variable
     if (config?.VITE_APP_TITLE) {
       document.title = `ENSO | ${config.VITE_APP_TITLE}`;
@@ -58,7 +65,7 @@ function App() {
         favicon.href = config.VITE_APP_LOGO_URL;
       }
     }
-  }, []);
+  }, [config]);
 
   return (
     <Providers>
