@@ -10,6 +10,11 @@
       "use": "@vercel/static"
     }
   ],
+  "rewrites": [
+    { "source": "/assets/(.*)", "destination": "/app/dist/assets/$1" },
+
+    { "source": "/(.*)", "destination": "/app/dist/index.html" }
+  ],
   "headers": [
     {
       "source": "/app/dist/(.*)",
